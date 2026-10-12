@@ -1,39 +1,30 @@
-# Akıllı Kasa (Smart Cashier) - C Programlama Ödevi
+# Türk Lirası Para Üstü ve Kupür Dağılım Hesaplayıcı
 
-Bu proje, C dilinde geliştirilmiş kapsamlı bir **Akıllı Kasa** simülasyonudur. Müşterinin ödediği tutar ile ürünün fiyatı arasındaki para üstünü, en az sayıda banknot ve madeni para (küpür) kullanarak optimize edilmiş bir şekilde hesaplar.
+Bu proje, bir alışveriş işleminde girilen ürün tutarı ile ödenen para arasındaki farkı hesaplayarak en büyük kupürden en küçük madeni paraya kadar detaylı bir dağılım dökümü sunan bir C konsol uygulamasıdır.
 
----
+## 📋 Proje Amacı ve Çalışma Mantığı
 
-## 📋 Projenin Amacı ve Kapsamı
-* **Amaç:** Bir perakende satış noktasında, kasiyere verilecek para üstünün en verimli (en az parça sayısıyla) şekilde dağıtılmasını otomatikleştirmektir.
-* **Kapsam:** Program; ürün tutarı ve ödenen para girdilerini alır, hatalı durumları yakalar ve kalan tutarı kuruş bazında tam sayıya çevirerek en büyük banknottan en küçük madeni paraya kadar dağılım yapar.
-
----
-
-## 🛠️ Geliştirme Sürecinde Kullanılan Araçlar ve Yararlanma Yöntemleri
-* **Programlama Dili (C):** Temel girdi/çıktı, koşullu yapılar ve matematiksel operatörler için ana dil olarak kullanılmıştır.
-* **Geliştirme Ortamı (Dev-C++ / VS Code):** Kodların yazılması, derlenmesi, hata ayıklama (debugging) ve test süreçleri için tercih edilmiştir.
-* **Versiyon Kontrol (Git & GitHub):** Proje kodlarının versiyonlanması ve uzaktan depoda saklanması için kullanılmıştır.
-* **Gemini (Yapay Zeka Asistanı):** Geliştirme sürecinde; bilgisayar mimarisinden kaynaklanan ondalık kayıp hatalarının (`float` hassasiyet problemleri) önlenmesi, kuruş dönüşüm algoritmasının optimize edilmesi ve projenin teknik dokümantasyonunun hazırlanması aşamalarında aktif olarak destek alınmıştır.
-
----
-
-## 🧠 Algoritma Detayları ve Adımları
-1. **Girdi Alma:** Kullanıcıdan ürün tutarı (`float`) ve ödenen para (`float`) bilgileri istenir.
-2. **Hata Kontrolü:** Ödenen paranın ürün tutarından az olup olmadığı kontrol edilir.
-3. **Ondalık Hassasiyet Optimizasyonu:** `float` türündeki ondalıklı sayıların ikili taban dönüşüm hatalarını engellemek için tutar 100 ile çarpılıp matematiksel yuvarlama (`+ 0.5`) yapılarak tam sayıya (`int`) dönüştürülür.
-4. **Küpür Dağılımı:** Elde edilen toplam kuruş değeri sırasıyla şu basamaklara göre mod ve bölme işlemlerine tabi tutulur:
+1. **Girdi Alımı:** Kullanıcıdan ürünün toplam tutarı ve kasaya verilen para TL cinsinden `float` olarak istenir.
+2. **Kuruş Dönüşümü:** Kayan noktalı (floating-point) sayıların bellekte tutulmasından kaynaklanan hassasiyet kayıplarını engellemek amacıyla tutar tamamen kuruş cinsine (`int`) dönüştürülür ve matematiksel yuvarlama uygulanır.
+3. **Kupür Hesaplamaları:** Matris veya döngü yerine ardışık tamsayı bölmesi (`/`) ve mod (`%`) işlemleri kullanılarak sırasıyla şu birimler hesaplanır:
    * **Banknotlar:** 200 TL, 100 TL, 50 TL, 20 TL, 10 TL, 5 TL
-   * **Madeni Paralar:** 1 TL, 50 Kr, 25 Kr, 10 Kr, 5 Kr, 1 Kr
-5. **Raporlama:** Her bir küpürden kaçar adet verileceği ve kullanılan **toplam küpür/madeni para adedi** ekrana yazdırılır.
+   * **Madeni Paralar:** 1 TL, 50 Kuruş, 25 Kuruş, 10 Kuruş, 5 Kuruş, 1 Kuruş
+4. **Özet Çıktı:** İşlem sonucunda hangi kupürden kaçar adet verileceği ve toplam verilen para/banknot adedi ekrana yazdırılır.
 
----
+## 🛠️ Kullanılan Teknolojiler
 
-## 🚀 Proje Nasıl Çalıştırılır?
-1. Depodaki `akilli_kasa.c` dosyasını indirin.
-2. Dev-C++ veya herhangi bir C derleyicisinde açın.
-3. Kodu derleyip çalıştırın (`F11` tuşu).
-4. İstenen tutarları girerek sonuçları test edin.
+* **Programlama Dili:** C (C99 veya üzeri)
+* **Kütüphaneler:** `<stdio.h>` (Standart Girdi/Çıktı kütüphanesi)
+
+## 💻 Kurulum ve Çalıştırma
+
+Projeyi bilgisayarınızda derleyip çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
+
+1. Depoyu klonlayın veya `main.c` dosyasını bilgisayarınıza indirin.
+2. Terminal veya komut istemcisini açarak dosyanın bulunduğu dizine gidin.
+3. GCC kullanarak derleyin:
+   ```bash
+   gcc main.c -o para_hesaplama
 
 ---
 
